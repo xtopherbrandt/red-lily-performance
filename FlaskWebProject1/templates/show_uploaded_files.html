@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for file in files %}
+    <li><h2>{{ file.fileName }}</h2>
+        <li>{{ file.name }}
+        <li>{{ file.desc }}
+        <li>{{ file.garmin_type }} --> {% if file.strava_type == None %}<b>{% endif %}{{ file.strava_type }}{% if file.strava_type == None %}</b>{% endif %}
+        <li>{{ file.external_id }}
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

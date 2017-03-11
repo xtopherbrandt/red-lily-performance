@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Goal</h2>
+        <p>
+            Red Lily's goal is to assist you in structuring your next workout or race for maximum performance.
+            Red Lily's first feature will be a race pace guide. Based on your current training, Red Lily will
+            estimate the pace you should be capable of running an upcoming race.
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Data Donor Program</h2>
+        <p>To achieve its goal Red Lily needs training and racing data from people like you.
+            In exchange for providing Red Lily access to your Strava data, you will get early access to Red Lily's 
+            newest features, and you will have a lifetime subscription free of charge.
+        {% if session.athlete_id is defined %}
+        <p><a class="btn btn-default" href="/authorize">Sign Up</a></p>
+        {% endif %}
+       </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Data Privacy</h2>
+        <p> Your privacy is critically important to us. Red Lily's privacy principles are simple:</p>
+        <p> We don’t ask you for personal information unless we truly need it. </p>
+        <p> We don't store any of your training data.</p>
+        <p> We treat your personal information with the highest regard to privacy and security.</p>
+        <p> Red Lily respects your right to privacy and shares your concern about the security of any data you may submit or provide access to via Strava and related services. 
+     </div>
+</div>
+
+
+{% endblock %}

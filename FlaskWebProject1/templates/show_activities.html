@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for activity in activities %}
+    <li><h2>{{ activity.name }}</h2>
+        <li>{{ activity.desc }}
+        <li>{{ activity.distance }}
+        <li>Strava ID: {{ activity.id }}
+        <li>Garmin ID: {{ activity.external_id }}
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Race Pace Guide</h2>
+        <p>
+            Red Lily's first feature will be a race pace guide. Based on your current training, Red Lily will
+            estimate the pace you should be capable of running an upcoming race.
+        </p>
+        <p>
+            The list below contains all of the races Red Lily found in your Strava data. The more race data you
+            provide, the better Red Lily will be able to estimate your next race pace.
+        </p>
+        <p>
+            If races are missing from this list, please head back to your Strava
+            <a href="https://www.strava.com/athletes/{{session.athlete_id}}/training/log">Training Log</a>
+            and set the run type to <b>Race</b> on runs that were races. Once you've updated your races, come back here and
+            refresh the page to see Red Lily's list.
+        </p>
+        <p>
+            Please be patient while we tune the Red Lily model to accurately estimate your race pace. You'll be the first to
+            know when the Race Pace Guide is ready.
+        </p>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Race</th>
+                    <th>Distance</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for activity in race_list|sort(attribute='start_date',reverse=True) %}
+                <tr>
+                    <th scope="row">{{activity.name}}</th>
+                    <td>{{(activity.distance/1000)|round(1,'common')}}Km</td>
+                    <td>{{activity.start_date|datetime}}</td>
+                </tr>
+                {% else %}
+                <tr class="info">
+                    <td>No Races Found :-(</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
